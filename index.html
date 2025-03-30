@@ -774,6 +774,11 @@
             .contact-container {
                 grid-template-columns: 1fr;
             }
+            
+            /* Ajuste para o vídeo em telas médias */
+            .about-image div {
+                height: 350px !important;
+            }
         }
         
         @media (max-width: 768px) {
@@ -810,6 +815,11 @@
             .hero-title {
                 font-size: 2.5rem;
             }
+            
+            /* Ajuste para o vídeo em telas pequenas */
+            .about-image div {
+                height: 250px !important;
+            }
         }
         
         @media (max-width: 576px) {
@@ -828,6 +838,11 @@
             
             .hero-title {
                 font-size: 2rem;
+            }
+            
+            /* Ajuste para o vídeo em telas muito pequenas */
+            .about-image div {
+                height: 200px !important;
             }
         }
         
@@ -857,7 +872,7 @@
                     <li class="nav-item"><a href="#home" class="nav-link">Início</a></li>
                     <li class="nav-item"><a href="#about" class="nav-link">Sobre</a></li>
                     <li class="nav-item"><a href="#services" class="nav-link">Serviços</a></li>
-                    <li class="nav-item"><a href="#portfolio" class="nav-link">Portfólio</a></li>
+                    <!-- <li class="nav-item"><a href="#portfolio" class="nav-link">Portfólio</a></li> -->
                     <li class="nav-item"><a href="#contact" class="nav-link">Contato</a></li>
                 </ul>
                 <button class="menu-btn" id="menu-btn">
@@ -927,8 +942,8 @@
                 
                 <div class="about-image">
                     <div class="about-img-bg"></div>
-                    <div style="height: 800px; overflow: hidden; border-radius: 10px; box-shadow: var(--shadow);">
-                        <video width="100%" height="auto" autoplay loop playsinline class="about-img" style="margin-top: -10px;">
+                    <div style="height: 600px; overflow: hidden; border-radius: 10px; box-shadow: var(--shadow);">
+                        <video width="100%" height="auto" autoplay loop playsinline controls muted class="about-img" style="object-fit: cover; height: 100%;">
                             <source src="video/teste_ia.mp4" type="video/mp4">
                             Seu navegador não suporta vídeos HTML5.
                         </video>
@@ -1003,6 +1018,7 @@
     </section>
 
     <!-- Portfólio -->
+    <!--
     <section class="portfolio" id="portfolio">
         <div class="container">
             <h2 class="section-title">Casos de Sucesso</h2>
@@ -1047,6 +1063,7 @@
             </div>
         </div>
     </section>
+    -->
 
     <!-- Tecnologias -->
     <section class="tech" id="tech">
@@ -1195,7 +1212,7 @@
                     <ul class="footer-links">
                         <li><a href="#about">Sobre a GRC Innovate</a></li>
                         <li><a href="#services">Nossos Serviços</a></li>
-                        <li><a href="#portfolio">Portfólio</a></li>
+                        <!-- <li><a href="#portfolio">Portfólio</a></li> -->
                     </ul>
                 </div>
                 
@@ -1274,6 +1291,29 @@
             
             // Pré-carregamento do vídeo para evitar travamentos
             video.load();
+            
+            // Verificar se é dispositivo móvel
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            // Em dispositivos móveis, adicionamos controles e mantemos muted para permitir autoplay
+            if (isMobile) {
+                video.setAttribute('controls', '');
+                video.muted = true; // Mantém mudo para permitir autoplay em dispositivos móveis
+                
+                // Adicionar botão grande para ativar o som
+                const soundButton = document.createElement('button');
+                soundButton.innerHTML = "🔊";
+                soundButton.className = "video-sound-btn";
+                soundButton.style.cssText = "position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.7); color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 24px; cursor: pointer; z-index: 11;";
+                video.parentNode.style.position = "relative";
+                video.parentNode.appendChild(soundButton);
+                
+                // Ativar o som quando o usuário clicar no botão
+                soundButton.addEventListener('click', function() {
+                    video.muted = false;
+                    soundButton.style.display = "none";
+                });
+            }
             
             // Tentativa inicial de reprodução (responderá à interação do usuário)
             video.addEventListener('canplaythrough', function() {
