@@ -705,7 +705,7 @@
         .back-to-top {
             position: fixed;
             bottom: 30px;
-            right: 30px;
+            right: 100px;
             width: 50px;
             height: 50px;
             background-color: var(--secondary);
@@ -729,6 +729,198 @@
         
         .back-to-top:hover {
             background-color: var(--accent);
+        }
+        
+        /* Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .chatbot-button {
+            width: 60px;
+            height: 60px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s, background-color 0.3s;
+            font-size: 24px;
+        }
+        
+        .chatbot-button:hover {
+            transform: translateY(-5px);
+            background-color: var(--accent);
+        }
+        
+        .chatbot-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 450px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .chatbot-window.active {
+            display: flex;
+        }
+        
+        .chatbot-header {
+            background: var(--gradient);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .chatbot-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+        
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            line-height: 1.4;
+            font-size: 0.95rem;
+        }
+        
+        .bot-message {
+            background-color: #f0f2f5;
+            color: var(--dark);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            background-color: var(--secondary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+        }
+        
+        .chatbot-input input:focus {
+            border-color: var(--secondary);
+        }
+        
+        .chatbot-input button {
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            background-color: #f0f2f5;
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+        
+        .typing-indicator.active {
+            display: flex;
+            align-items: center;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--gray);
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing-animation 1.5s infinite;
+            opacity: 0.7;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing-animation {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* Chatbot responsivo */
+        @media (max-width: 576px) {
+            .chatbot-window {
+                width: 300px;
+                height: 400px;
+                bottom: 75px;
+                right: 0;
+            }
+            
+            .chatbot-button {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .back-to-top {
+                right: 90px;
+            }
         }
         
         /* Responsividade */
@@ -942,7 +1134,7 @@
                 
                 <div class="about-image">
                     <div class="about-img-bg"></div>
-                    <div style="height: 600px; overflow: hidden; border-radius: 10px; box-shadow: var(--shadow);">
+                    <div style="height: 400px; overflow: hidden; border-radius: 10px; box-shadow: var(--shadow);">
                         <video width="100%" height="auto" autoplay loop playsinline controls muted class="about-img" style="object-fit: cover; height: 100%;">
                             <source src="video/teste_ia.mp4" type="video/mp4">
                             Seu navegador não suporta vídeos HTML5.
@@ -1275,6 +1467,40 @@
     <a href="#home" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </a>
+    
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <div class="chatbot-button" id="chatbot-toggle">
+            💬
+        </div>
+        
+        <div class="chatbot-window" id="chatbot-window">
+            <div class="chatbot-header">
+                <div class="chatbot-title">
+                    <span>🤖</span>
+                    <span>XRC Assistente Virtual</span>
+                </div>
+                <button class="chatbot-close" id="chatbot-close">✕</button>
+            </div>
+            
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="message bot-message">
+                    Olá! Eu sou o XRC, assistente virtual da GRC Innovate. Como posso ajudar você hoje?
+                </div>
+                
+                <div class="typing-indicator" id="typing-indicator">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+            
+            <div class="chatbot-input">
+                <input type="text" id="user-input" placeholder="Digite sua mensagem..." autocomplete="off">
+                <button id="send-message">➤</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         // JavaScript para o menu responsivo
@@ -1412,6 +1638,97 @@
                 
                 statsObserver.observe(statsSection);
             }
+        });
+
+        // JavaScript para o chatbot
+        document.addEventListener('DOMContentLoaded', function() {
+            // Seleciona elementos do chatbot
+            const chatbotToggle = document.getElementById('chatbot-toggle');
+            const chatbotWindow = document.getElementById('chatbot-window');
+            const chatbotClose = document.getElementById('chatbot-close');
+            const chatbotMessages = document.getElementById('chatbot-messages');
+            const userInput = document.getElementById('user-input');
+            const sendButton = document.getElementById('send-message');
+            const typingIndicator = document.getElementById('typing-indicator');
+            
+            // Abre/fecha o chatbot
+            chatbotToggle.addEventListener('click', function() {
+                chatbotWindow.classList.toggle('active');
+                if (chatbotWindow.classList.contains('active')) {
+                    userInput.focus();
+                }
+            });
+            
+            // Fecha o chatbot
+            chatbotClose.addEventListener('click', function() {
+                chatbotWindow.classList.remove('active');
+            });
+            
+            // Envia a mensagem do usuário
+            function sendMessage() {
+                const message = userInput.value.trim();
+                if (message !== '') {
+                    // Adiciona a mensagem do usuário
+                    addMessage(message, 'user');
+                    userInput.value = '';
+                    
+                    // Mostra o indicador de digitação
+                    typingIndicator.classList.add('active');
+                    
+                    // Simula resposta do bot após um pequeno atraso
+                    setTimeout(function() {
+                        typingIndicator.classList.remove('active');
+                        botResponse(message);
+                    }, 1000 + Math.random() * 2000);
+                }
+            }
+            
+            // Adiciona mensagem ao chat
+            function addMessage(message, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                messageDiv.classList.add(sender + '-message');
+                messageDiv.textContent = message;
+                chatbotMessages.appendChild(messageDiv);
+                
+                // Rolagem automática para a última mensagem
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+            
+            // Respostas do bot
+            function botResponse(userMessage) {
+                let response = '';
+                userMessage = userMessage.toLowerCase();
+                
+                // Respostas básicas do chatbot
+                if (userMessage.includes('olá') || userMessage.includes('oi') || userMessage.includes('bom dia') || userMessage.includes('boa tarde') || userMessage.includes('boa noite')) {
+                    response = 'Olá! Como posso ajudar você hoje?';
+                } else if (userMessage.includes('serviço') || userMessage.includes('solução')) {
+                    response = 'A GRC Innovate oferece serviços de desenvolvimento de software, chatbots inteligentes e automação de tarefas. Em qual deles você tem interesse?';
+                } else if (userMessage.includes('preço') || userMessage.includes('custo') || userMessage.includes('valor')) {
+                    response = 'Os preços variam de acordo com as necessidades específicas do seu projeto. Podemos agendar uma consulta gratuita para discutir os detalhes e fornecer um orçamento personalizado.';
+                } else if (userMessage.includes('contato') || userMessage.includes('falar') || userMessage.includes('atendente')) {
+                    response = 'Você pode entrar em contato conosco pelo telefone (11) 1234-5678 ou pelo email contato@grcinnovate.com. Deseja que um de nossos consultores entre em contato com você?';
+                } else if (userMessage.includes('chatbot') || userMessage.includes('assistente virtual')) {
+                    response = 'Nossos chatbots são desenvolvidos com tecnologia de ponta para fornecer atendimento 24/7, melhorar a experiência do cliente e automatizar processos. Posso fornecer mais informações sobre como isso pode beneficiar sua empresa.';
+                } else if (userMessage.includes('obrigado') || userMessage.includes('valeu')) {
+                    response = 'Por nada! Estou aqui para ajudar. Tem mais alguma pergunta?';
+                } else {
+                    response = 'Entendo. Posso ajudar você com informações sobre nossos serviços, preços ou agendar uma demonstração. O que você gostaria de saber?';
+                }
+                
+                addMessage(response, 'bot');
+            }
+            
+            // Evento de clique no botão enviar
+            sendButton.addEventListener('click', sendMessage);
+            
+            // Evento de pressionar Enter no campo de entrada
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
         });
     </script>
 </body>
