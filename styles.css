@@ -1944,7 +1944,7 @@
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 80px);
-                background-color: white;
+                background-color: var(--primary);
                 flex-direction: column;
                 align-items: center;
                 padding: 40px 0;
@@ -1962,6 +1962,7 @@
             
             .menu-btn {
                 display: block;
+                color: #ffffff;
             }
             
             .section-title {
@@ -2252,5 +2253,79 @@
                 width: 100%;
                 justify-content: center;
                 text-align: center;
+            }
+        }
+
+        /* Estilo para o select de serviços */
+        select {
+            background-color: rgba(27, 53, 69, 0.9) !important;
+            color: #ffffff !important;
+        }
+
+        .form-control select {
+            background-color: rgba(27, 53, 69, 0.9) !important;
+            color: #ffffff !important;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+
+        .form-control select:focus {
+            background-color: rgba(42, 147, 201, 0.9);
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-control select option {
+            background-color: #1B3545 !important;
+            color: #ffffff !important;
+            padding: 15px !important;
+            font-size: 1rem !important;
+        }
+
+        .form-control select option:checked,
+        .form-control select option:hover,
+        .form-control select option:focus {
+            background-color: #27516e !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 10px 100px #27516e inset !important;
+        }
+
+        /* Ajuste para navegadores específicos */
+        @-moz-document url-prefix() {
+            select,
+            .form-control select,
+            select option,
+            .form-control select option {
+                background-color: #1B3545 !important;
+                color: #ffffff !important;
+            }
+        }
+
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+            select,
+            .form-control select,
+            select option,
+            .form-control select option {
+                background-color: #1B3545 !important;
+                color: #ffffff !important;
+            }
+            
+            select option:checked,
+            select option:hover {
+                background-color: #27516e !important;
+                color: #ffffff !important;
             }
         }
