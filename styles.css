@@ -966,6 +966,17 @@
             .cta-card-text {
                 font-size: 0.9rem;
             }
+            
+            /* Ajuste para o vídeo em telas pequenas */
+            .about-image div {
+                height: auto !important;
+                max-height: 600px !important;
+            }
+            
+            /* Ocultar chatbot em dispositivos móveis */
+            .chatbot-container {
+                display: none;
+            }
         }
         
         @media (max-width: 576px) {
@@ -986,6 +997,12 @@
             .btn-primary-glow {
                 padding: 12px 30px;
                 font-size: 1rem;
+            }
+            
+            /* Ajuste para o vídeo em telas muito pequenas */
+            .about-image div {
+                height: auto !important;
+                max-height: 450px !important;
             }
         }
         
@@ -1343,6 +1360,12 @@
             .nav-link::after {
                 display: none;
             }
+            
+            /* Ajuste para o vídeo em telas médias */
+            .about-image div {
+                height: auto !important;
+                max-height: 700px !important;
+            }
         }
         
         @media (max-width: 768px) {
@@ -1395,6 +1418,17 @@
             .footer-container {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 30px;
+            }
+            
+            /* Ajuste para o vídeo em telas pequenas */
+            .about-image div {
+                height: auto !important;
+                max-height: 600px !important;
+            }
+            
+            /* Ocultar chatbot em dispositivos móveis */
+            .chatbot-container {
+                display: none;
             }
         }
         
@@ -1501,6 +1535,12 @@
                 height: 40px;
                 right: 20px;
                 bottom: 90px;
+            }
+            
+            /* Ajuste para o vídeo em telas muito pequenas */
+            .about-image div {
+                height: auto !important;
+                max-height: 450px !important;
             }
         }
         
@@ -1892,7 +1932,8 @@
             
             /* Ajuste para o vídeo em telas médias */
             .about-image div {
-                height: 350px !important;
+                height: auto !important;
+                max-height: 700px !important;
             }
         }
         
@@ -1933,7 +1974,8 @@
             
             /* Ajuste para o vídeo em telas pequenas */
             .about-image div {
-                height: 250px !important;
+                height: auto !important;
+                max-height: 600px !important;
             }
         }
         
@@ -1957,7 +1999,8 @@
             
             /* Ajuste para o vídeo em telas muito pequenas */
             .about-image div {
-                height: 200px !important;
+                height: auto !important;
+                max-height: 450px !important;
             }
         }
         
