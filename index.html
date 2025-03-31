@@ -4,1053 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GRC Innovate - Inovação Tecnológica</title>
-    <style>
-        /* Variáveis e Reset */
-        :root {
-            --primary: #1B3545;
-            --secondary: #2A93C9;
-            --accent: #1B7FAB;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-            --success: #28a745;
-            --gradient: linear-gradient(135deg, var(--primary), var(--accent));
-            --shadow: 0 5px 15px rgba(0,0,0,0.1);
-            --transition: all 0.3s ease;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            line-height: 1.6;
-            color: var(--dark);
-            overflow-x: hidden;
-            background-color: var(--light);
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: var(--secondary);
-            color: #fff;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(42, 147, 201, 0.25);
-        }
-        
-        .btn:hover {
-            background-color: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(42, 147, 201, 0.3);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--secondary);
-            color: var(--secondary);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--secondary);
-            color: white;
-        }
-        
-        section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--primary);
-            text-align: center;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-        
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--gray);
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 50px;
-        }
-        
-        img {
-            max-width: 100%;
-        }
-        
-        /* Animações */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .animate {
-            opacity: 0;
-        }
-        
-        .animate.show {
-            animation: fadeInUp 0.6s forwards;
-        }
-        
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        header.scrolled {
-            padding: 10px 0;
-            background-color: white;
-        }
-        
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 120px;
-            width: auto;
-            max-width: 350px;
-            transition: var(--transition);
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-item {
-            margin-left: 30px;
-        }
-        
-        .nav-link {
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-            padding: 5px 0;
-        }
-        
-        .nav-link:hover {
-            color: var(--secondary);
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background-color: var(--secondary);
-            bottom: 0;
-            left: 0;
-            transition: var(--transition);
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--primary);
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 100vh;
-            min-height: 600px;
-            display: flex;
-            align-items: center;
-            background: var(--gradient);
-            padding-top: 120px;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('/api/placeholder/1000/600') center/cover;
-            opacity: 0.1;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            color: white;
-            max-width: 600px;
-        }
-        
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            animation: fadeInUp 0.8s forwards;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.25rem;
-            margin-bottom: 30px;
-            animation: fadeInUp 0.8s 0.2s forwards;
-            opacity: 0;
-        }
-        
-        .hero-btns {
-            display: flex;
-            gap: 15px;
-            animation: fadeInUp 0.8s 0.4s forwards;
-            opacity: 0;
-        }
-        
-        .hero-image {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            width: 50%;
-            max-width: 600px;
-            animation: fadeInUp 0.8s 0.6s forwards;
-            opacity: 0;
-        }
-        
-        /* Sobre Nós */
-        .about {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .about-container {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-        }
-        
-        .about-content {
-            flex: 1;
-        }
-        
-        .about-heading {
-            font-size: 2.2rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .about-heading::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background: var(--secondary);
-        }
-        
-        .about-text {
-            margin-bottom: 25px;
-            color: var(--gray);
-        }
-        
-        .about-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-        
-        .feature-icon {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(42, 147, 201, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--secondary);
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-        
-        .feature-text h4 {
-            margin-bottom: 5px;
-            color: var(--primary);
-        }
-        
-        .about-image {
-            flex: 1;
-            position: relative;
-        }
-        
-        .about-img {
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
-        
-        .about-img-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 4px solid var(--secondary);
-            border-radius: 10px;
-            top: 20px;
-            left: 20px;
-            z-index: -1;
-        }
-        
-        /* Serviços */
-        .services {
-            background-color: #f8f9fa;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border-bottom: 4px solid transparent;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--secondary);
-        }
-        
-        .service-icon {
-            font-size: 3rem;
-            color: var(--secondary);
-            margin-bottom: 20px;
-        }
-        
-        .service-title {
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        .service-description {
-            color: var(--gray);
-            margin-bottom: 15px;
-        }
-        
-        /* Cases de Sucesso */
-        .portfolio {
-            background-color: white;
-        }
-        
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .portfolio-item {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
-        }
-        
-        .portfolio-image {
-            height: 250px;
-            overflow: hidden;
-        }
-        
-        .portfolio-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .portfolio-item:hover .portfolio-image img {
-            transform: scale(1.05);
-        }
-        
-        .portfolio-content {
-            padding: 25px;
-        }
-        
-        .portfolio-category {
-            color: var(--secondary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-        
-        .portfolio-title {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        .portfolio-description {
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-        
-        /* Tecnologias */
-        .tech {
-            background-color: #f8f9fa;
-            text-align: center;
-        }
-        
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .tech-item {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .tech-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .tech-icon {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 15px;
-        }
-        
-        .tech-name {
-            font-weight: 600;
-            color: var(--primary);
-        }
-        
-        /* CTA */
-        .cta {
-            background: var(--gradient);
-            color: white;
-            text-align: center;
-            padding: 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background-image: url('/api/placeholder/100/100');
-            opacity: 0.05;
-            animation: rotate 30s linear infinite;
-        }
-        
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .cta-content {
-            position: relative;
-            z-index: 1;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .cta-title {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .cta-text {
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        .cta-btn {
-            background-color: white;
-            color: var(--primary);
-        }
-        
-        .cta-btn:hover {
-            background-color: rgba(255, 255, 255, 0.9);
-            color: var(--accent);
-        }
-        
-        /* Contato */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-        
-        .contact-item {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background-color: rgba(42, 147, 201, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--secondary);
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-        
-        .contact-form {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--secondary);
-        }
-        
-        .form-control::placeholder {
-            color: #aaa;
-        }
-        
-        textarea.form-control {
-            resize: vertical;
-            min-height: 120px;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--primary);
-            color: white;
-            padding: 70px 0 20px;
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-col h4 {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-col h4::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--secondary);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 15px;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .footer-links a:hover {
-            color: var(--secondary);
-            padding-left: 5px;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: var(--transition);
-        }
-        
-        .social-link:hover {
-            background-color: var(--secondary);
-            transform: translateY(-5px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-        }
-        
-        /* Back to Top */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 100px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--secondary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            z-index: 99;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            box-shadow: 0 0 10px rgba(0,0,0,0.15);
-        }
-        
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            background-color: var(--accent);
-        }
-        
-        /* Chatbot */
-        .chatbot-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-        }
-        
-        .chatbot-button {
-            width: 60px;
-            height: 60px;
-            background-color: var(--secondary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s, background-color 0.3s;
-            font-size: 24px;
-        }
-        
-        .chatbot-button:hover {
-            transform: translateY(-5px);
-            background-color: var(--accent);
-        }
-        
-        .chatbot-window {
-            position: absolute;
-            bottom: 80px;
-            right: 0;
-            width: 350px;
-            height: 450px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        
-        .chatbot-window.active {
-            display: flex;
-        }
-        
-        .chatbot-header {
-            background: var(--gradient);
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .chatbot-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-        }
-        
-        .chatbot-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-        }
-        
-        .chatbot-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .message {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 20px;
-            line-height: 1.4;
-            font-size: 0.95rem;
-        }
-        
-        .bot-message {
-            background-color: #f0f2f5;
-            color: var(--dark);
-            align-self: flex-start;
-            border-bottom-left-radius: 5px;
-        }
-        
-        .user-message {
-            background-color: var(--secondary);
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 5px;
-        }
-        
-        .chatbot-input {
-            display: flex;
-            padding: 15px;
-            border-top: 1px solid #eee;
-        }
-        
-        .chatbot-input input {
-            flex: 1;
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 30px;
-            outline: none;
-        }
-        
-        .chatbot-input input:focus {
-            border-color: var(--secondary);
-        }
-        
-        .chatbot-input button {
-            width: 40px;
-            height: 40px;
-            margin-left: 10px;
-            background-color: var(--secondary);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        
-        .typing-indicator {
-            display: none;
-            align-self: flex-start;
-            background-color: #f0f2f5;
-            padding: 12px 20px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin-top: 5px;
-        }
-        
-        .typing-indicator.active {
-            display: flex;
-            align-items: center;
-        }
-        
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--gray);
-            border-radius: 50%;
-            margin: 0 2px;
-            animation: typing-animation 1.5s infinite;
-            opacity: 0.7;
-        }
-        
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-        
-        @keyframes typing-animation {
-            0%, 60%, 100% {
-                transform: translateY(0);
-            }
-            30% {
-                transform: translateY(-5px);
-            }
-        }
-        
-        /* Chatbot responsivo */
-        @media (max-width: 576px) {
-            .chatbot-window {
-                width: 300px;
-                height: 400px;
-                bottom: 75px;
-                right: 0;
-            }
-            
-            .chatbot-button {
-                width: 50px;
-                height: 50px;
-            }
-            
-            .back-to-top {
-                right: 90px;
-            }
-        }
-        
-        /* Responsividade */
-        @media (max-width: 991px) {
-            .hero-title {
-                font-size: 3rem;
-            }
-            
-            .hero-image {
-                display: none;
-            }
-            
-            .hero-content {
-                max-width: 100%;
-                text-align: center;
-            }
-            
-            .hero-btns {
-                justify-content: center;
-            }
-            
-            .about-container {
-                flex-direction: column-reverse;
-            }
-            
-            .about-img-bg {
-                display: none;
-            }
-            
-            .about-heading {
-                text-align: center;
-            }
-            
-            .about-heading::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
-            .feature-item {
-                justify-content: center;
-            }
-            
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-            
-            /* Ajuste para o vídeo em telas médias */
-            .about-image div {
-                height: 350px !important;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background-color: white;
-                flex-direction: column;
-                align-items: center;
-                padding: 40px 0;
-                transition: 0.4s;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .nav-item {
-                margin: 15px 0;
-            }
-            
-            .menu-btn {
-                display: block;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            /* Ajuste para o vídeo em telas pequenas */
-            .about-image div {
-                height: 250px !important;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero-btns {
-                flex-direction: column;
-                width: 100%;
-            }
-            
-            .btn {
-                width: 100%;
-            }
-            
-            .services-grid, .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            /* Ajuste para o vídeo em telas muito pequenas */
-            .about-image div {
-                height: 200px !important;
-            }
-        }
-        
-        @keyframes ticker {
-            0% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-        
-        .ticker-container:hover .ticker-text {
-            animation-play-state: paused;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Biblioteca de partículas -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -1058,12 +16,13 @@
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">
-                    <img src="imagem/logo.png" alt="GRC Innovate" id="logo-img">
+                    <img src="imagem/logo.png" alt="GRC Innovate" id="logo-img" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22100%22 height%3D%2270%22 viewBox%3D%220 0 100 70%22%3E%3Crect width%3D%22100%22 height%3D%2270%22 fill%3D%22%231B3545%22%2F%3E%3Ctext x%3D%2250%22 y%3D%2240%22 font-family%3D%22Arial%22 font-size%3D%2214%22 fill%3D%22white%22 text-anchor%3D%22middle%22%3EGRC Innovate%3C%2Ftext%3E%3C%2Fsvg%3E';">
                 </a>
                 <ul class="nav-menu" id="nav-menu">
                     <li class="nav-item"><a href="#home" class="nav-link">Início</a></li>
                     <li class="nav-item"><a href="#about" class="nav-link">Sobre</a></li>
                     <li class="nav-item"><a href="#services" class="nav-link">Serviços</a></li>
+                    <li class="nav-item"><a href="#ready-projects" class="nav-link">Projetos Prontos</a></li>
                     <!-- <li class="nav-item"><a href="#portfolio" class="nav-link">Portfólio</a></li> -->
                     <li class="nav-item"><a href="#contact" class="nav-link">Contato</a></li>
                 </ul>
@@ -1076,6 +35,17 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <!-- Fundo de partículas -->
+        <div id="particles-js" class="particles-js"></div>
+        
+        <!-- Elemento de circuito digital -->
+        <div class="digital-circuit"></div>
+        
+        <!-- Elementos gráficos flutuantes -->
+        <div class="tech-element tech-element-1" style="position: absolute; top: 15%; right: 15%; width: 100px; height: 100px; border: 2px solid rgba(255,255,255,0.1); border-radius: 50%; animation: float 6s infinite alternate;"></div>
+        <div class="tech-element tech-element-2" style="position: absolute; bottom: 20%; left: 10%; width: 60px; height: 60px; border: 1px solid rgba(42, 147, 201, 0.3); transform: rotate(45deg); animation: float 8s infinite alternate-reverse;"></div>
+        <div class="tech-element tech-element-3" style="position: absolute; top: 30%; left: 20%; width: 40px; height: 40px; background: rgba(42, 147, 201, 0.2); border-radius: 8px; animation: pulse 4s infinite;"></div>
+        
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">Transformando ideias em soluções tecnológicas inovadoras</h1>
@@ -1084,6 +54,11 @@
                     <a href="#services" class="btn">Nossos Serviços</a>
                     <a href="#contact" class="btn btn-outline">Fale Conosco</a>
                 </div>
+            </div>
+            
+            <!-- Elemento visual adicional -->
+            <div class="tech-visual" style="position: absolute; right: 80px; bottom: 80px; width: 300px; height: 300px; opacity: 0.7; z-index: 1; display: none;">
+                <img src="imagem/tech-visual.png" alt="" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
         </div>
     </section>
@@ -1101,28 +76,28 @@
                     <p class="about-text">Nossa missão é proporcionar inovação e rapidez, desenvolvendo tecnologias que facilitam o dia a dia das empresas e melhoram a experiência do cliente, sempre com foco em resultados práticos e mensuráveis.</p>
                     
                     <div class="about-features">
-                        <div class="feature-item">
+                        <div class="feature-item animate">
                             <div class="feature-icon">🚀</div>
                             <div class="feature-text">
                                 <h4>Agilidade</h4>
                                 <p>Entregamos soluções em tempo recorde.</p>
                             </div>
                         </div>
-                        <div class="feature-item">
+                        <div class="feature-item animate">
                             <div class="feature-icon">💡</div>
                             <div class="feature-text">
                                 <h4>Inovação</h4>
                                 <p>Sempre à frente das tendências tecnológicas.</p>
                             </div>
                         </div>
-                        <div class="feature-item">
+                        <div class="feature-item animate">
                             <div class="feature-icon">👥</div>
                             <div class="feature-text">
                                 <h4>Personalização</h4>
                                 <p>Soluções sob medida para cada cliente.</p>
                             </div>
                         </div>
-                        <div class="feature-item">
+                        <div class="feature-item animate">
                             <div class="feature-icon">📊</div>
                             <div class="feature-text">
                                 <h4>Resultados</h4>
@@ -1134,8 +109,8 @@
                 
                 <div class="about-image">
                     <div class="about-img-bg"></div>
-                    <div style="height: 400px; overflow: hidden; border-radius: 10px; box-shadow: var(--shadow);">
-                        <video width="100%" height="auto" autoplay loop playsinline controls muted class="about-img" style="object-fit: cover; height: 100%;">
+                    <div style="height: 600px; overflow: hidden; border-radius: 10px; box-shadow: var(--shadow);">
+                        <video width="100%" height="auto" autoplay loop playsinline controls muted class="about-img" style="object-fit: cover; height: 100%;" onerror="this.style.display='none'; this.parentNode.style.background='var(--primary)'; this.parentNode.innerHTML='<div style=\'display:flex; height:100%; align-items:center; justify-content:center; color:white;\'>Vídeo indisponível</div>';">
                             <source src="video/teste_ia.mp4" type="video/mp4">
                             Seu navegador não suporta vídeos HTML5.
                         </video>
@@ -1149,10 +124,10 @@
     <section class="services" id="services">
         <div class="container">
             <h2 class="section-title">Nossos Serviços</h2>
-            <p class="section-subtitle">Soluções tecnológicas personalizadas para impulsionar o seu negócio.</p>
+            <p class="section-subtitle" style="margin-bottom: 20px;">Soluções tecnológicas personalizadas para impulsionar o seu negócio.</p>
             
             <!-- Barras de progresso animadas -->
-            <div class="progress-container" style="margin: 30px 0 40px;">
+            <div class="progress-container" style="margin: 15px 0 20px;">
                 <div class="progress-item">
                     <div class="progress-label" style="display: flex; justify-content: space-between; margin-bottom: 5px;">
                         <span style="font-weight: 600;">Satisfação dos Clientes</span>
@@ -1163,7 +138,7 @@
                     </div>
                 </div>
                 
-                <div class="progress-item" style="margin-top: 15px;">
+                <div class="progress-item" style="margin-top: 10px;">
                     <div class="progress-label" style="display: flex; justify-content: space-between; margin-bottom: 5px;">
                         <span style="font-weight: 600;">Projetos Entregues no Prazo</span>
                         <span>95%</span>
@@ -1173,7 +148,7 @@
                     </div>
                 </div>
                 
-                <div class="progress-item" style="margin-top: 15px;">
+                <div class="progress-item" style="margin-top: 10px;">
                     <div class="progress-label" style="display: flex; justify-content: space-between; margin-bottom: 5px;">
                         <span style="font-weight: 600;">Taxa de Sucesso</span>
                         <span>90%</span>
@@ -1209,53 +184,160 @@
         </div>
     </section>
 
-    <!-- Portfólio -->
-    <!--
-    <section class="portfolio" id="portfolio">
+    <!-- Projetos Prontos -->
+    <section class="ready-projects" id="ready-projects">
         <div class="container">
-            <h2 class="section-title">Casos de Sucesso</h2>
-            <p class="section-subtitle">Conheça alguns dos nossos projetos que estão transformando negócios.</p>
+            <h2 class="section-title">Projetos Prontos – Compre ou Alugue Agora!</h2>
+            <p class="section-subtitle">Temos quatro sistemas inovadores prontos para uso! Você pode comprá-los ou alugar por um valor mensal acessível.</p>
             
-            <div class="portfolio-grid">
-                <div class="portfolio-item animate">
-                    <div class="portfolio-image">
-                        <img src="imagem/projeto1.jpg" alt="Sistema de Gestão">
+            <div class="projects-grid">
+                <!-- Projeto 1 -->
+                <div class="project-card">
+                    <div class="project-icon">💢</div>
+                    <h3 class="project-title"><span class="number">1</span> Bloqueador de Casas de Apostas</h3>
+                    <div class="project-description">
+                        <div class="feature">
+                            <span class="feature-icon">💢</span>
+                            <span>Está viciado em jogos de aposta? Nós podemos te ajudar!</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🛡️</span>
+                            <span>Nosso sistema bloqueia qualquer site ou aplicativo relacionado a apostas.</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">👨‍👩‍👧‍👦</span>
+                            <span>Ajuda você ou quem você gosta a se livrarem desse vício.</span>
+                        </div>
                     </div>
-                    <div class="portfolio-content">
-                        <div class="portfolio-category">Sistema de Gestão</div>
-                        <h3 class="portfolio-title">Sistema ERP para Empresa de Logística</h3>
-                        <p class="portfolio-description">Desenvolvimento de um sistema completo de gestão empresarial que permitiu à empresa reduzir custos operacionais em 35% e aumentar sua eficiência em processos logísticos.</p>
-                        <a href="#contact" class="btn btn-outline">Ver Detalhes</a>
+                    <div class="project-footer">
+                        <div class="project-price">
+                            <span class="amount">R$ 49,99</span>
+                            <span class="period">/mensal</span>
+                        </div>
+                        <a href="#contact" class="project-cta">
+                            <i class="fas fa-rocket"></i> Tenho Interesse
+                        </a>
                     </div>
                 </div>
                 
-                <div class="portfolio-item animate">
-                    <div class="portfolio-image">
-                        <img src="imagem/projeto2.jpg" alt="Aplicativo Mobile">
+                <!-- Projeto 2 -->
+                <div class="project-card float-animation">
+                    <div class="popular-tag">Mais Popular</div>
+                    <div class="project-icon">🔧</div>
+                    <h3 class="project-title"><span class="number">2</span> Sistema de Mecânica AutoSync</h3>
+                    <div class="project-description">
+                        <div class="feature">
+                            <span class="feature-icon">🔧</span>
+                            <span>Controle total para sua oficina mecânica!</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">✅</span>
+                            <span>Gestão completa de gastos, projeção de custos e lucros.</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">✅</span>
+                            <span>Monitoramento da produtividade dos funcionários.</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">✅</span>
+                            <span>O cliente acompanha o histórico de manutenção do próprio carro.</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🚀</span>
+                            <span>Mais organização e mais confiança para o seu negócio!</span>
+                        </div>
                     </div>
-                    <div class="portfolio-content">
-                        <div class="portfolio-category">Aplicativo Mobile</div>
-                        <h3 class="portfolio-title">App de Delivery para Restaurante</h3>
-                        <p class="portfolio-description">Criação de aplicativo mobile para uma rede de restaurantes que aumentou as vendas em 40% durante a pandemia e melhorou a experiência de pedidos online.</p>
-                        <a href="#contact" class="btn btn-outline">Ver Detalhes</a>
+                    <div class="project-footer">
+                        <div class="project-price">
+                            <span class="amount">R$ 39,99</span>
+                            <span class="period">/mensal</span>
+                        </div>
+                        <a href="#contact" class="project-cta">
+                            <i class="fas fa-rocket"></i> Tenho Interesse
+                        </a>
                     </div>
                 </div>
                 
-                <div class="portfolio-item animate">
-                    <div class="portfolio-image">
-                        <img src="imagem/projeto3.jpg" alt="E-commerce">
+                <!-- Projeto 3 -->
+                <div class="project-card">
+                    <div class="project-icon">✂️</div>
+                    <h3 class="project-title"><span class="number">3</span> Sistema para Barbearias e Salões</h3>
+                    <div class="project-description">
+                        <div class="feature">
+                            <span class="feature-icon">💈</span>
+                            <span>Seu salão funcionando no automático!</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🤖</span>
+                            <span>Agendamentos 100% automáticos com resposta inteligente.</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">📅</span>
+                            <span>Lembretes para os clientes fazerem futuras manutenções.</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">📲</span>
+                            <span>Com apenas um clique, o cliente escolhe o melhor dia para o agendamento.</span>
+                        </div>
                     </div>
-                    <div class="portfolio-content">
-                        <div class="portfolio-category">E-commerce</div>
-                        <h3 class="portfolio-title">Loja Virtual para Marca de Roupas</h3>
-                        <p class="portfolio-description">Desenvolvimento de plataforma de e-commerce completa com integração de pagamentos, gestão de estoque e relatórios de vendas que impulsionou as vendas online em 65%.</p>
-                        <a href="#contact" class="btn btn-outline">Ver Detalhes</a>
+                    <div class="project-footer">
+                        <div class="project-price">
+                            <span class="amount">R$ 19,99</span>
+                            <span class="period">/mensal</span>
+                        </div>
+                        <a href="#contact" class="project-cta">
+                            <i class="fas fa-rocket"></i> Tenho Interesse
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Projeto 4 -->
+                <div class="project-card">
+                    <div class="project-icon">🖥️</div>
+                    <h3 class="project-title"><span class="number">4</span> Manutenção de Computadores</h3>
+                    <div class="project-description">
+                        <div class="feature">
+                            <span class="feature-icon">🖥️</span>
+                            <span>Atendimento ágil e eficaz para clientes de manutenção de PCs.</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">⚡</span>
+                            <span>Conectamos o técnico mais próximo ao cliente em até 2 horas.</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">💾</span>
+                            <span>Serviços inclusos:</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">✅</span>
+                            <span>Formatação e limpeza completa.</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">✅</span>
+                            <span>Upgrade e instalação de jogos.</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">✅</span>
+                            <span>Backup seguro de armazenamento.</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">✅</span>
+                            <span>Otimização do sistema operacional para melhor desempenho.</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-price">
+                            <span class="amount">R$ 49,99</span>
+                            <span class="period">/mensal</span>
+                        </div>
+                        <a href="#contact" class="project-cta">
+                            <i class="fas fa-rocket"></i> Tenho Interesse
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    -->
 
     <!-- Tecnologias -->
     <section class="tech" id="tech">
@@ -1264,25 +346,25 @@
             <p class="section-subtitle">Tecnologias que impulsionam nossos serviços.</p>
             
             <!-- Estatísticas com contadores animados -->
-            <div class="stats-container" style="display: flex; flex-wrap: wrap; justify-content: space-around; margin: 40px 0; text-align: center;">
-                <div class="stat-item" style="flex: 1 1 200px; margin: 20px; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 10px;">
-                    <div class="counter-number" data-target="158" style="font-size: 3rem; font-weight: 700; color: var(--secondary);">0</div>
-                    <div class="stat-title" style="font-weight: 600; margin-top: 10px;">Projetos Entregues</div>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="counter-number" data-target="120">0</div>
+                    <div class="stat-title">Projetos Entregues</div>
                 </div>
                 
-                <div class="stat-item" style="flex: 1 1 200px; margin: 20px; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 10px;">
-                    <div class="counter-number" data-target="84" style="font-size: 3rem; font-weight: 700; color: var(--secondary);">0</div>
-                    <div class="stat-title" style="font-weight: 600; margin-top: 10px;">Clientes Satisfeitos</div>
+                <div class="stat-item">
+                    <div class="counter-number" data-target="84">0</div>
+                    <div class="stat-title">Clientes Satisfeitos</div>
                 </div>
                 
-                <div class="stat-item" style="flex: 1 1 200px; margin: 20px; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 10px;">
-                    <div class="counter-number" data-target="12" style="font-size: 3rem; font-weight: 700; color: var(--secondary);">0</div>
-                    <div class="stat-title" style="font-weight: 600; margin-top: 10px;">Anos de Experiência</div>
+                <div class="stat-item">
+                    <div class="counter-number" data-target="10">0</div>
+                    <div class="stat-title">Anos de Experiência</div>
                 </div>
                 
-                <div class="stat-item" style="flex: 1 1 200px; margin: 20px; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 10px;">
-                    <div class="counter-number" data-target="42" style="font-size: 3rem; font-weight: 700; color: var(--secondary);">0</div>
-                    <div class="stat-title" style="font-weight: 600; margin-top: 10px;">Profissionais</div>
+                <div class="stat-item">
+                    <div class="counter-number" data-target="23">0</div>
+                    <div class="stat-title">Profissionais</div>
                 </div>
             </div>
             
@@ -1321,19 +403,46 @@
     </section>
 
     <!-- CTA -->
-    <section class="cta" id="cta">
+    <section class="cta">
+        <div class="cta-decoration cta-decoration-1"></div>
+        <div class="cta-decoration cta-decoration-2"></div>
+        <div class="cta-decoration cta-decoration-3"></div>
+        
         <div class="container">
-            <h2 class="section-title">Transforme seu negócio com a GRC Innovate</h2>
-            <p class="section-subtitle">Entre em contato para começar o seu projeto hoje.</p>
-            
-            <!-- Banner de texto animado -->
-            <div class="ticker-container" style="background-color: rgba(255, 255, 255, 0.15); padding: 15px 0; margin: 30px 0; overflow: hidden; border-radius: 8px; position: relative;">
-                <div class="ticker-text" style="white-space: nowrap; animation: ticker 20s linear infinite; color: white; font-weight: 600; font-size: 1.2rem;">
-                    🚀 Inovação Tecnológica • 💡 Soluções Personalizadas • 🔄 Transformação Digital • ⚡ Alta Performance • 💼 Resultados Comprovados • 🚀 Inovação Tecnológica • 💡 Soluções Personalizadas • 🔄 Transformação Digital • ⚡ Alta Performance • 💼 Resultados Comprovados
+            <div class="cta-content">
+                <h2 class="section-title">TRANSFORME SEU NEGÓCIO COM A GRC INNOVATE</h2>
+                
+                <div class="cta-subtitle-container">
+                    <p class="section-subtitle">Acelere sua transformação digital hoje!</p>
+                    <div class="cta-badge">INOVAÇÃO GARANTIDA</div>
+                </div>
+                
+                <div class="cta-visual-elements">
+                    <div class="cta-card">
+                        <i class="fas fa-bolt cta-card-icon"></i>
+                        <div class="cta-card-text">Resultados Imediatos</div>
+                    </div>
+                    <div class="cta-card">
+                        <i class="fas fa-rocket cta-card-icon"></i>
+                        <div class="cta-card-text">Implementação Rápida</div>
+                    </div>
+                    <div class="cta-card">
+                        <i class="fas fa-chart-line cta-card-icon"></i>
+                        <div class="cta-card-text">ROI Comprovado</div>
+                    </div>
+                </div>
+                
+                <div class="ticker-container">
+                    <div class="ticker-text">
+                        🔥 Gestão de Processos • 🤖 RPA - Automação de Processos • 📊 Análise de Dados • 💻 Sistemas Personalizados • 🚀 Transformação Digital
+                    </div>
+                </div>
+                
+                <div class="cta-actions">
+                    <a href="#contact" class="btn-primary-glow">COMECE AGORA</a>
+                    <p class="cta-actions-subtitle">Consulta inicial gratuita - Sem compromisso</p>
                 </div>
             </div>
-            
-            <a href="#contact" class="btn">Comece Agora</a>
         </div>
     </section>
 
@@ -1341,20 +450,24 @@
     <section class="contact" id="contact">
         <div class="container">
             <h2 class="section-title">Contato</h2>
-            <p class="section-subtitle">Estamos aqui para ajudar. Preencha o formulário abaixo ou entre em contato diretamente.</p>
+            <p class="section-subtitle">Estamos aqui para ajudar. Entre em contato ou envie uma mensagem para iniciarmos uma parceria de sucesso.</p>
             
             <div class="contact-container">
                 <div class="contact-info">
                     <div class="contact-item">
-                        <div class="contact-icon">📞</div>
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
                         <div class="contact-text">
                             <h4>Telefone</h4>
-                            <p>(11) 1234-5678</p>
+                            <p>(11) 97823-9837</p>
                         </div>
                     </div>
                     
                     <div class="contact-item">
-                        <div class="contact-icon">📧</div>
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
                         <div class="contact-text">
                             <h4>Email</h4>
                             <p>contato@grcinnovate.com</p>
@@ -1362,33 +475,62 @@
                     </div>
                     
                     <div class="contact-item">
-                        <div class="contact-icon">📍</div>
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
                         <div class="contact-text">
                             <h4>Endereço</h4>
                             <p>Rua dos Pinheiros, 39 - São Paulo, SP</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Horário de Atendimento</h4>
+                            <p>Segunda a Sexta: 9h às 18h</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="contact-form">
                     <h3>Envie uma mensagem</h3>
-                    <form>
+                    <form id="contactForm">
                         <div class="form-group">
+                            <input type="text" class="form-control" id="name" name="name" placeholder=" " required>
                             <label for="name">Nome</label>
-                            <input type="text" id="name" name="name" required>
                         </div>
                         
                         <div class="form-group">
+                            <input type="email" class="form-control" id="email" name="email" placeholder=" " required>
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="message">Mensagem</label>
-                            <textarea id="message" name="message" required rows="4"></textarea>
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder=" ">
+                            <label for="phone">Telefone (opcional)</label>
                         </div>
                         
-                        <button type="submit" class="btn">Enviar</button>
+                        <div class="form-group">
+                            <select class="form-control" id="service" name="service" required>
+                                <option value="" selected disabled hidden></option>
+                                <option value="chatbot">Chatbots Inteligentes</option>
+                                <option value="automation">Automação de Tarefas</option>
+                                <option value="software">Desenvolvimento de Software</option>
+                                <option value="project">Projetos Prontos</option>
+                                <option value="other">Outro</option>
+                            </select>
+                            <label for="service">Serviço de Interesse</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea class="form-control" id="message" name="message" rows="4" placeholder=" " required></textarea>
+                            <label for="message">Mensagem</label>
+                        </div>
+                        
+                        <button type="submit" class="btn">Enviar Mensagem</button>
                     </form>
                 </div>
             </div>
@@ -1404,6 +546,7 @@
                     <ul class="footer-links">
                         <li><a href="#about">Sobre a GRC Innovate</a></li>
                         <li><a href="#services">Nossos Serviços</a></li>
+                        <li><a href="#ready-projects">Projetos Prontos</a></li>
                         <!-- <li><a href="#portfolio">Portfólio</a></li> -->
                     </ul>
                 </div>
@@ -1418,24 +561,40 @@
                 </div>
                 
                 <div class="footer-col">
+                    <h4>Projetos Prontos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#ready-projects">Bloqueador de Apostas</a></li>
+                        <li><a href="#ready-projects">Sistema para Mecânicas</a></li>
+                        <li><a href="#ready-projects">Agendamento para Salões</a></li>
+                        <li><a href="#ready-projects">Manutenção de Computadores</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
                     <h4>Contato</h4>
                     <div class="contact-info">
                         <div class="contact-item">
-                            <div class="contact-icon">📞</div>
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
                             <div class="contact-text">
-                                <p>(11) 1234-5678</p>
+                                <p>(11) 97823-9837</p>
                             </div>
                         </div>
                         
                         <div class="contact-item">
-                            <div class="contact-icon">📧</div>
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
                             <div class="contact-text">
                                 <p>contato@grcinnovate.com</p>
                             </div>
                         </div>
                         
                         <div class="contact-item">
-                            <div class="contact-icon">📍</div>
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
                             <div class="contact-text">
                                 <p>Rua dos Pinheiros, 39 - São Paulo, SP</p>
                             </div>
@@ -1478,14 +637,14 @@
             <div class="chatbot-header">
                 <div class="chatbot-title">
                     <span>🤖</span>
-                    <span>XRC Assistente Virtual</span>
+                    <span>XR Assistente Virtual</span>
                 </div>
                 <button class="chatbot-close" id="chatbot-close">✕</button>
             </div>
             
             <div class="chatbot-messages" id="chatbot-messages">
                 <div class="message bot-message">
-                    Olá! Eu sou o XRC, assistente virtual da GRC Innovate. Como posso ajudar você hoje?
+                    Olá! Eu sou o XR, assistente virtual da GRC Innovate. Como posso ajudar você hoje?
                 </div>
                 
                 <div class="typing-indicator" id="typing-indicator">
@@ -1501,235 +660,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // JavaScript para o menu responsivo
-        const menuBtn = document.getElementById('menu-btn');
-        const navMenu = document.getElementById('nav-menu');
-        
-        menuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // JavaScript para iniciar o vídeo quando visível usando Intersection Observer
-        document.addEventListener('DOMContentLoaded', function() {
-            const video = document.querySelector('.about-img');
-            
-            // Pré-carregamento do vídeo para evitar travamentos
-            video.load();
-            
-            // Verificar se é dispositivo móvel
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            
-            // Em dispositivos móveis, adicionamos controles e mantemos muted para permitir autoplay
-            if (isMobile) {
-                video.setAttribute('controls', '');
-                video.muted = true; // Mantém mudo para permitir autoplay em dispositivos móveis
-                
-                // Adicionar botão grande para ativar o som
-                const soundButton = document.createElement('button');
-                soundButton.innerHTML = "🔊";
-                soundButton.className = "video-sound-btn";
-                soundButton.style.cssText = "position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.7); color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 24px; cursor: pointer; z-index: 11;";
-                video.parentNode.style.position = "relative";
-                video.parentNode.appendChild(soundButton);
-                
-                // Ativar o som quando o usuário clicar no botão
-                soundButton.addEventListener('click', function() {
-                    video.muted = false;
-                    soundButton.style.display = "none";
-                });
-            }
-            
-            // Tentativa inicial de reprodução (responderá à interação do usuário)
-            video.addEventListener('canplaythrough', function() {
-                // Só tenta reproduzir após o vídeo estar carregado
-                const playPromise = video.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        // Auto-play foi bloqueado pelo navegador
-                        console.log("Reprodução automática bloqueada pelo navegador. Aguardando interação do usuário.");
-                        
-                        // Adicionar botão de play sobreposto ao vídeo
-                        const playButton = document.createElement('button');
-                        playButton.innerHTML = "▶";
-                        playButton.className = "video-play-btn";
-                        playButton.style.cssText = "position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.7); color: white; border: none; border-radius: 50%; width: 80px; height: 80px; font-size: 32px; cursor: pointer; z-index: 10;";
-                        video.parentNode.style.position = "relative";
-                        video.parentNode.appendChild(playButton);
-                        
-                        // Reproduzir o vídeo quando o usuário clicar no botão
-                        playButton.addEventListener('click', function() {
-                            video.play();
-                            playButton.style.display = "none";
-                        });
-                    });
-                }
-            });
-
-            // Usando Intersection Observer para melhor performance
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Quando o vídeo fica visível
-                        video.play().catch(e => console.log("Aguardando interação do usuário para reprodução"));
-                    } else {
-                        // Quando o vídeo não está visível
-                        video.pause();
-                    }
-                });
-            }, { threshold: 0.2 }); // Inicia quando pelo menos 20% do vídeo está visível
-            
-            // Observe o vídeo
-            observer.observe(video);
-            
-            // Animação para as barras de progresso
-            const progressBars = document.querySelectorAll('.progress-bar');
-            const progressObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Animar a barra de progresso quando visível
-                        setTimeout(() => {
-                            entry.target.style.width = entry.target.getAttribute('data-width');
-                        }, 200);
-                        progressObserver.unobserve(entry.target); // Parar de observar após animar
-                    }
-                });
-            }, { threshold: 0.2 });
-            
-            // Observar todas as barras de progresso
-            progressBars.forEach(bar => {
-                progressObserver.observe(bar);
-            });
-            
-            // Adicionar animação aos números de contador
-            const animateNumbers = () => {
-                const counters = document.querySelectorAll('.counter-number');
-                counters.forEach(counter => {
-                    const target = parseInt(counter.getAttribute('data-target'));
-                    const duration = 2000; // 2 segundos
-                    const increment = target / (duration / 30); // Atualiza a cada 30ms
-                    let current = 0;
-                    
-                    const updateCounter = () => {
-                        current += increment;
-                        if (current < target) {
-                            counter.textContent = Math.ceil(current);
-                            setTimeout(updateCounter, 30);
-                        } else {
-                            counter.textContent = target;
-                        }
-                    };
-                    
-                    updateCounter();
-                });
-            };
-            
-            // Iniciar animação dos números quando o elemento for visível
-            const statsSection = document.querySelector('.tech');
-            if (statsSection) {
-                const statsObserver = new IntersectionObserver((entries) => {
-                    if (entries[0].isIntersecting) {
-                        animateNumbers();
-                        statsObserver.unobserve(entries[0].target);
-                    }
-                }, { threshold: 0.2 });
-                
-                statsObserver.observe(statsSection);
-            }
-        });
-
-        // JavaScript para o chatbot
-        document.addEventListener('DOMContentLoaded', function() {
-            // Seleciona elementos do chatbot
-            const chatbotToggle = document.getElementById('chatbot-toggle');
-            const chatbotWindow = document.getElementById('chatbot-window');
-            const chatbotClose = document.getElementById('chatbot-close');
-            const chatbotMessages = document.getElementById('chatbot-messages');
-            const userInput = document.getElementById('user-input');
-            const sendButton = document.getElementById('send-message');
-            const typingIndicator = document.getElementById('typing-indicator');
-            
-            // Abre/fecha o chatbot
-            chatbotToggle.addEventListener('click', function() {
-                chatbotWindow.classList.toggle('active');
-                if (chatbotWindow.classList.contains('active')) {
-                    userInput.focus();
-                }
-            });
-            
-            // Fecha o chatbot
-            chatbotClose.addEventListener('click', function() {
-                chatbotWindow.classList.remove('active');
-            });
-            
-            // Envia a mensagem do usuário
-            function sendMessage() {
-                const message = userInput.value.trim();
-                if (message !== '') {
-                    // Adiciona a mensagem do usuário
-                    addMessage(message, 'user');
-                    userInput.value = '';
-                    
-                    // Mostra o indicador de digitação
-                    typingIndicator.classList.add('active');
-                    
-                    // Simula resposta do bot após um pequeno atraso
-                    setTimeout(function() {
-                        typingIndicator.classList.remove('active');
-                        botResponse(message);
-                    }, 1000 + Math.random() * 2000);
-                }
-            }
-            
-            // Adiciona mensagem ao chat
-            function addMessage(message, sender) {
-                const messageDiv = document.createElement('div');
-                messageDiv.classList.add('message');
-                messageDiv.classList.add(sender + '-message');
-                messageDiv.textContent = message;
-                chatbotMessages.appendChild(messageDiv);
-                
-                // Rolagem automática para a última mensagem
-                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-            }
-            
-            // Respostas do bot
-            function botResponse(userMessage) {
-                let response = '';
-                userMessage = userMessage.toLowerCase();
-                
-                // Respostas básicas do chatbot
-                if (userMessage.includes('olá') || userMessage.includes('oi') || userMessage.includes('bom dia') || userMessage.includes('boa tarde') || userMessage.includes('boa noite')) {
-                    response = 'Olá! Como posso ajudar você hoje?';
-                } else if (userMessage.includes('serviço') || userMessage.includes('solução')) {
-                    response = 'A GRC Innovate oferece serviços de desenvolvimento de software, chatbots inteligentes e automação de tarefas. Em qual deles você tem interesse?';
-                } else if (userMessage.includes('preço') || userMessage.includes('custo') || userMessage.includes('valor')) {
-                    response = 'Os preços variam de acordo com as necessidades específicas do seu projeto. Podemos agendar uma consulta gratuita para discutir os detalhes e fornecer um orçamento personalizado.';
-                } else if (userMessage.includes('contato') || userMessage.includes('falar') || userMessage.includes('atendente')) {
-                    response = 'Você pode entrar em contato conosco pelo telefone (11) 1234-5678 ou pelo email contato@grcinnovate.com. Deseja que um de nossos consultores entre em contato com você?';
-                } else if (userMessage.includes('chatbot') || userMessage.includes('assistente virtual')) {
-                    response = 'Nossos chatbots são desenvolvidos com tecnologia de ponta para fornecer atendimento 24/7, melhorar a experiência do cliente e automatizar processos. Posso fornecer mais informações sobre como isso pode beneficiar sua empresa.';
-                } else if (userMessage.includes('obrigado') || userMessage.includes('valeu')) {
-                    response = 'Por nada! Estou aqui para ajudar. Tem mais alguma pergunta?';
-                } else {
-                    response = 'Entendo. Posso ajudar você com informações sobre nossos serviços, preços ou agendar uma demonstração. O que você gostaria de saber?';
-                }
-                
-                addMessage(response, 'bot');
-            }
-            
-            // Evento de clique no botão enviar
-            sendButton.addEventListener('click', sendMessage);
-            
-            // Evento de pressionar Enter no campo de entrada
-            userInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    sendMessage();
-                }
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
